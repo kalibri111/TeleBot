@@ -1,0 +1,1 @@
+POSTGRES_DSN = 'dbname=telebot user=kalibri password=4444'

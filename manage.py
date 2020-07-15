@@ -1,3 +1,7 @@
-from telebot import TeleBot
+from add_handlers import add_confirmation_handler, add_location_handler,\
+    add_place_handler, add_start_handler
+from settings import bot
 
-bot = TeleBot('')
+
+if __name__ == '__main__':
+    bot.polling()

@@ -1,5 +1,5 @@
 from enum import Enum
-from settings import POSTGRES_DSN
+from settings import DATABASE_URL
 
 import psycopg2
 
@@ -12,7 +12,7 @@ class STATE(Enum):
 
 
 def execute(sql):
-    conn = psycopg2.connect(POSTGRES_DSN)
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     r = None
     with conn:
         with conn.cursor() as curs:

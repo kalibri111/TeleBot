@@ -6,6 +6,8 @@ from enum import Enum
 
 import psycopg2
 
+_last_index = 0
+
 
 @bot.message_handler(
     commands=['add'],
@@ -19,13 +21,17 @@ def add_start_handler(message):
         'insert into place(chat_id, address, location) values ({}, null, null);'.
             format(message.chat.id)
     )
+    global _last_index
+    _last_index = execute(
+        'select max(id) from place'
+    )[0]
 
 
 @bot.message_handler(func=lambda msg: get_state(msg) == STATE.PLACE.value[0])
 def add_place_handler(message):
     execute(
-        'update place set address = \'{}\' where chat_id = {};'.format(
-            message.text, message.chat.id
+        'update place set address = \'{}\' where chat_id = {} and id = {};'.format(
+            message.text, message.chat.id, _last_index
         )
     )
     bot.send_message(message.chat.id, 'Добавьте адрес')
@@ -35,8 +41,8 @@ def add_place_handler(message):
 @bot.message_handler(func=lambda msg: get_state(msg) == STATE.LOCATION.value[0])
 def add_location_handler(message):
     execute(
-        'update place set location = \'{}\' where chat_id = {}'.format(
-            message.text, message.chat.id
+        'update place set location = \'{}\' where chat_id = {} and id = {};'.format(
+            message.text, message.chat.id, _last_index
         )
     )
     update_state(message)
@@ -47,7 +53,9 @@ def add_location_handler(message):
 def add_confirmation_handler(message):
     if 'нет' in message.text:
         execute(
-            'delete from place where chat_id = {}'.format(message.chat.id)
+            'delete from place where chat_id = {} and id = {}'.format(
+                message.chat.id, _last_index
+            )
         )
         bot.send_message(message.chat.id, 'Отменено')
     else:

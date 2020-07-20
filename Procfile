@@ -1,1 +1,1 @@
-web: gunicorn courserabot.wsgi --log-file -
+web: gunicorn coursera-tele-bot.wsgi --log-file -

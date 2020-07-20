@@ -1,0 +1,1 @@
+web: gunicorn courserabot.wsgi --log-file -

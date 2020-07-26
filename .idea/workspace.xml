@@ -25,9 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0606980-3575-4e7b-9714-06e0330de342" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/start_handlers.py" afterDir="false" />
-    </list>
+    <list default="true" id="d0606980-3575-4e7b-9714-06e0330de342" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,6 +133,7 @@
       <workItem from="1595239711251" duration="7578000" />
       <workItem from="1595758113584" duration="181000" />
       <workItem from="1595758310315" duration="1272000" />
+      <workItem from="1595759935731" duration="319000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1594626892558</created>
